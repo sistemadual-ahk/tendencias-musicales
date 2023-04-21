@@ -4,6 +4,7 @@ import { EnAuge } from './enAuge';
 import { Icono } from '../utils/icono';
 
 export class Normal extends Popularidad {
+  public static cantReproduccionesMinimas: number = 1000;
   private cantReproducciones: number = 0;
 
   protected icono(): string {
@@ -16,7 +17,7 @@ export class Normal extends Popularidad {
 
   public reproducir(cancion: Cancion): void {
     this.cantReproducciones++;
-    if(this.cantReproducciones > 1000) {
+    if(this.cantReproducciones > Normal.cantReproduccionesMinimas) {
        cancion.setPopularidad(new EnAuge());
     }
   }

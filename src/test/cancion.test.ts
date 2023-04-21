@@ -1,3 +1,4 @@
+import { Normal } from './../main/tendenciasmusicales/popularidades/normal';
 import { Icono } from './../main/tendenciasmusicales/utils/icono';
 import { Album } from './../main/tendenciasmusicales/canciones/album';
 import { Artista } from './../main/tendenciasmusicales/canciones/artista';
@@ -24,6 +25,18 @@ describe("“The Scientist”", () => {
         
         expect(detalle).toContain(Icono.MUSICAL_NOTE);
         expect(cancion.getCantReproducciones()).toBe(1);
-      });
+    });
+
+    test("(Normal -> Auge) The Scientist está en auge por superar el mínimo de reproducciones esperadas", () => {
+        Normal.cantReproduccionesMinimas = 3;
+
+        cancion.reproducir();
+        cancion.reproducir();
+        cancion.reproducir();
+        cancion.reproducir();
+
+        expect(cancion.detalleCompleto()).toContain(Icono.ROCKET);
+        expect(cancion.getCantReproducciones()).toBe(4);
+    });
 });
 
